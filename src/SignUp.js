@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const NAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PASSWORD_REGEX =
@@ -7,8 +7,6 @@ const EMAIL_REGEX =
   /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
 
 const SignUp = () => {
-  const nameRef = useRef();
-
   const [firstName, setFirstName] = useState("");
   const [validFirstName, setValidFirstName] = useState(false);
   const [firstNameFocus, setFirstNameFocus] = useState(false);
@@ -24,10 +22,6 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
-
-  useEffect(() => {
-    nameRef.current.focus();
-  }, []);
 
   useEffect(() => {
     const confirm = NAME_REGEX.test(firstName);
@@ -62,15 +56,14 @@ const SignUp = () => {
       <div className="sign-up-form">
         <button className="btn try-free">
           Try it free 7days{" "}
-          <span className="free-cond">than $20/mo. thereafter</span>
+          <span className="free-cond">then $20/mo. thereafter</span>
         </button>
         <form onSubmit={(e) => e.preventDefault()}>
           {/* First Name */}
           <input
             type="text"
-            className={!validFirstName ? "invalid" : null}
+            className={!validFirstName && firstNameFocus ? "invalid" : null}
             autoComplete="off"
-            ref={nameRef}
             placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
             required
@@ -88,9 +81,8 @@ const SignUp = () => {
           {/* Last NAme */}
           <input
             type="text"
-            className={!validLastName ? "invalid" : null}
+            className={!validLastName && lastNameFocus ? "invalid" : null}
             autoComplete="off"
-            ref={nameRef}
             placeholder="Last Name"
             onChange={(e) => setLastName(e.target.value)}
             required
@@ -108,9 +100,8 @@ const SignUp = () => {
           {/* EMail */}
           <input
             type="email"
-            className={!validEmail ? "invalid" : null}
+            className={!validEmail && emailFocus ? "invalid" : null}
             autoComplete="off"
-            ref={nameRef}
             placeholder="Email Address"
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -128,9 +119,8 @@ const SignUp = () => {
           {/* Password */}
           <input
             type="password"
-            className={!validPassword ? "invalid" : null}
+            className={!validPassword && passwordFocus ? "invalid" : null}
             autoComplete="off"
-            ref={nameRef}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -144,16 +134,7 @@ const SignUp = () => {
           >
             Password is invalid
           </p>
-          <button
-            disabled={
-              !validFirstName || !validLastName || !validEmail || !validPassword
-                ? true
-                : false
-            }
-            className="btn free-trial"
-          >
-            Claim your free trial
-          </button>
+          <button className="btn free-trial">Claim your free trial</button>
           <p className="agreement">
             By clicking the button, you are agreeing to our
             <span className="terms"> terms and services</span>
