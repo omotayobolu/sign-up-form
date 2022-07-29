@@ -85,12 +85,25 @@ form {
 }
 
 input {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
   padding: 10px 20px;
   width: 100%;
   border: 1px solid var(--Grayish-Blue);
   border-radius: 5px;
   font-weight: 700;
+}
+.err {
+  color: var(--Red);
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.off {
+  position: absolute;
+  left: -9999px;
 }
 
 .invalid {
