@@ -95,6 +95,7 @@ input {
   font-weight: 700;
   font-size: 1rem;
 }
+
 .err {
   color: var(--Red);
   font-size: 0.7rem;
